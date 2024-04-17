@@ -1,0 +1,4 @@
+/labs/kafka-server.env
+/labs/bin/
+/labs/src/
+/labs/*/logs/
