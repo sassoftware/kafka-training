@@ -2,3 +2,4 @@
 /labs/bin/
 /labs/src/
 /labs/*/logs/
+.vscode
