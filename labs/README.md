@@ -20,3 +20,12 @@ objectives and then follow each step in the `steps.md` file to complete
 the lab.  Take time at each step in the lab to expore and ensure that
 you understand the concept being presented.
  
+## Starting and Stopping Services
+
+Each lab requires starting a local Kafka server, and sometimes additional
+services, to interact with during the lab.  It is important to start each
+lab with a new Kafka process and finish the lab by shutting down the
+services.  Since each lab may introduce Kafka configuration changes,
+attempting to re-use a Kafka instance from a different lab may result in
+incorrect behavior.
+

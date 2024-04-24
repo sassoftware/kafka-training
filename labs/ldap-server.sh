@@ -123,7 +123,7 @@ function installApacheDS() {
         failOnError $? "Failed to extract ApacheDS files from $tmpdownload"
 
         # Identify the path to the extracted
-        extractDir=`find $ADS_TMP_DIR -type d -d 1`
+        extractDir=`find $ADS_TMP_DIR -mindepth 1 -maxdepth 1 -type d`
         failOnError $? "Failed to locate the extracted ApacheDS files in $ADS_TMP_DIR"
 
         echo "Moving ApacheDS from temporary location: $ADS_TMP_DIR/$extractDir"
@@ -167,7 +167,7 @@ function installJXplorer() {
             failOnError $? "Failed to extract JXplorer files from $tmpdownload"
 
             # Identify the path to the extracted
-            extractDir=`find $JXP_TMP_DIR -type d -d 1`
+            extractDir=`find $JXP_TMP_DIR -mindepth 1 -maxdepth 1 -type d`
             failOnError $? "Failed to locate the extracted JXplorer files in $JXP_TMP_DIR"
 
             echo "Moving JXplorer from temporary location: $JXP_TMP_DIR/$extractDir"

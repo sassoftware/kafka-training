@@ -93,3 +93,12 @@ tail -f Lab01_Setup/logs/server.log
 
 If the Kafka server fails to start, information in the log file should help
 you determine the source of the problem.
+
+## Step 6: Stop the Kafka server
+
+The lab is now complete.  Use the lab management script to terminate the Kafka server:
+
+```
+./kafka-server.sh stop Lab01_Setup
+```
+
