@@ -5,25 +5,25 @@
 #
 version: 1
 
-dn: ou=people,o=sevenSeas
+dn: ou=people,dc=example,dc=com
 objectclass: organizationalUnit
 objectclass: top
 description: Contains entries which describe persons (seamen)
 ou: people
 
-dn: ou=groups,o=sevenSeas
+dn: ou=groups,dc=example,dc=com
 objectclass: organizationalUnit
 objectclass: top
 description: Contains entries which describe groups (crews, for instance)
 ou: groups
 
-dn: ou=crews,ou=groups,o=sevenSeas
+dn: ou=crews,ou=groups,dc=example,dc=com
 objectclass: organizationalUnit
 objectclass: top
 description: Contains entries which describe ship crews
 ou: crews
 
-dn: ou=ranks,ou=groups,o=sevenSeas
+dn: ou=ranks,ou=groups,dc=example,dc=com
 objectclass: organizationalUnit
 objectclass: top
 description: Contains entries which describe naval ranks (e.g. captain)
@@ -32,7 +32,7 @@ ou: ranks
 # HMS Lydia Crew
 # --------------
 
-dn: cn=Horatio Hornblower,ou=people,o=sevenSeas
+dn: cn=Horatio Hornblower,ou=people,dc=example,dc=com
 objectclass: person
 objectclass: organizationalPerson
 objectclass: inetOrgPerson
@@ -45,7 +45,7 @@ uid: hhornblo
 mail: hhornblo@royalnavy.mod.uk
 userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
 
-dn: cn=William Bush,ou=people,o=sevenSeas
+dn: cn=William Bush,ou=people,dc=example,dc=com
 objectclass: person
 objectclass: organizationalPerson
 objectclass: inetOrgPerson
@@ -53,13 +53,13 @@ objectclass: top
 cn: William Bush
 description: Lt. William Bush
 givenname: William
-manager: cn=Horatio Hornblower,ou=people,o=sevenSeas
+manager: cn=Horatio Hornblower,ou=people,dc=example,dc=com
 sn: Bush
 uid: wbush
 mail: wbush@royalnavy.mod.uk
 userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
 
-dn: cn=Thomas Quist,ou=people,o=sevenSeas
+dn: cn=Thomas Quist,ou=people,dc=example,dc=com
 objectclass: person
 objectclass: organizationalPerson
 objectclass: inetOrgPerson
@@ -67,13 +67,13 @@ objectclass: top
 cn: Thomas Quist
 description: Seaman Quist
 givenname: Thomas
-manager: cn=Horatio Hornblower,ou=people,o=sevenSeas
+manager: cn=Horatio Hornblower,ou=people,dc=example,dc=com
 sn: Quist
 uid: tquist
 mail: tquist@royalnavy.mod.uk
 userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
 
-dn: cn=Moultrie Crystal,ou=people,o=sevenSeas
+dn: cn=Moultrie Crystal,ou=people,dc=example,dc=com
 objectclass: person
 objectclass: organizationalPerson
 objectclass: inetOrgPerson
@@ -81,25 +81,25 @@ objectclass: top
 cn: Moultrie Crystal
 description: Lt. Crystal
 givenname: Moultrie
-manager: cn=Horatio Hornblower,ou=people,o=sevenSeas
+manager: cn=Horatio Hornblower,ou=people,dc=example,dc=com
 sn: Crystal
 uid: mchrysta
 mail: mchrysta@royalnavy.mod.uk
 userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
 
-dn: cn=HMS Lydia,ou=crews,ou=groups,o=sevenSeas
+dn: cn=HMS Lydia,ou=crews,ou=groups,dc=example,dc=com
 objectclass: groupOfUniqueNames
 objectclass: top
 cn: HMS Lydia
-uniquemember: cn=Horatio Hornblower,ou=people,o=sevenSeas
-uniquemember: cn=William Bush,ou=people,o=sevenSeas
-uniquemember: cn=Thomas Quist,ou=people,o=sevenSeas
-uniquemember: cn=Moultrie Crystal,ou=people,o=sevenSeas
+uniquemember: cn=Horatio Hornblower,ou=people,dc=example,dc=com
+uniquemember: cn=William Bush,ou=people,dc=example,dc=com
+uniquemember: cn=Thomas Quist,ou=people,dc=example,dc=com
+uniquemember: cn=Moultrie Crystal,ou=people,dc=example,dc=com
 
 # HMS Victory Crew
 # ----------------
 
-dn: cn=Horatio Nelson,ou=people,o=sevenSeas
+dn: cn=Horatio Nelson,ou=people,dc=example,dc=com
 objectclass: person
 objectclass: organizationalPerson
 objectclass: inetOrgPerson
@@ -112,7 +112,7 @@ uid: hnelson
 mail: hnelson@royalnavy.mod.uk
 userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
 
-dn: cn=Thomas Masterman Hardy,ou=people,o=sevenSeas
+dn: cn=Thomas Masterman Hardy,ou=people,dc=example,dc=com
 objectclass: person
 objectclass: organizationalPerson
 objectclass: inetOrgPerson
@@ -120,13 +120,13 @@ objectclass: top
 cn: Thomas Masterman Hardy
 description: Sir Thomas Masterman Hardy
 givenname: Thomas
-manager: cn=Horatio Nelson,ou=people,o=sevenSeas
+manager: cn=Horatio Nelson,ou=people,dc=example,dc=com
 sn: Hardy
 uid: thardy
 mail: thardy@royalnavy.mod.uk
 userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
 
-dn: cn=Cornelius Buckley,ou=people,o=sevenSeas
+dn: cn=Cornelius Buckley,ou=people,dc=example,dc=com
 objectclass: person
 objectclass: organizationalPerson
 objectclass: inetOrgPerson
@@ -134,24 +134,24 @@ objectclass: top
 cn: Cornelius Buckley
 description: LM Cornelius Buckley
 givenname: Cornelius
-manager: cn=Horatio Nelson,ou=people,o=sevenSeas
+manager: cn=Horatio Nelson,ou=people,dc=example,dc=com
 sn: Buckley
 uid: cbuckley
 mail: cbuckley@royalnavy.mod.uk
 userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
 
-dn: cn=HMS Victory,ou=crews,ou=groups,o=sevenSeas
+dn: cn=HMS Victory,ou=crews,ou=groups,dc=example,dc=com
 objectclass: groupOfUniqueNames
 objectclass: top
 cn: HMS Victory
-uniquemember: cn=Horatio Nelson,ou=people,o=sevenSeas
-uniquemember: cn=Thomas Masterman Hardy,ou=people,o=sevenSeas
-uniquemember: cn=Cornelius Buckley,ou=people,o=sevenSeas
+uniquemember: cn=Horatio Nelson,ou=people,dc=example,dc=com
+uniquemember: cn=Thomas Masterman Hardy,ou=people,dc=example,dc=com
+uniquemember: cn=Cornelius Buckley,ou=people,dc=example,dc=com
 
 # HMS Bounty Crew
 # ---------------
 
-dn: cn=William Bligh,ou=people,o=sevenSeas
+dn: cn=William Bligh,ou=people,dc=example,dc=com
 objectclass: person
 objectclass: organizationalPerson
 objectclass: inetOrgPerson
@@ -164,7 +164,7 @@ uid: wbligh
 mail: wbligh@royalnavy.mod.uk
 userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
 
-dn: cn=Fletcher Christian,ou=people,o=sevenSeas
+dn: cn=Fletcher Christian,ou=people,dc=example,dc=com
 objectclass: person
 objectclass: organizationalPerson
 objectclass: inetOrgPerson
@@ -172,13 +172,13 @@ objectclass: top
 cn: Fletcher Christian
 description: Lieutenant Fletcher Christian
 givenname: Fletcher
-manager: cn=William Bligh,ou=people,o=sevenSeas
+manager: cn=William Bligh,ou=people,dc=example,dc=com
 sn: Christian
 uid: fchristi
 mail: fchristi@royalnavy.mod.uk
 userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
 
-dn: cn=John Fryer,ou=people,o=sevenSeas
+dn: cn=John Fryer,ou=people,dc=example,dc=com
 objectclass: person
 objectclass: organizationalPerson
 objectclass: inetOrgPerson
@@ -186,13 +186,13 @@ objectclass: top
 cn: John Fryer
 description: Master John Fryer
 givenname: John
-manager: cn=William Bligh,ou=people,o=sevenSeas
+manager: cn=William Bligh,ou=people,dc=example,dc=com
 sn: Fryer
 uid: jfryer
 mail: jfryer@royalnavy.mod.uk
 userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
 
-dn: cn=John Hallett,ou=people,o=sevenSeas
+dn: cn=John Hallett,ou=people,dc=example,dc=com
 objectclass: person
 objectclass: organizationalPerson
 objectclass: inetOrgPerson
@@ -200,20 +200,20 @@ objectclass: top
 cn: John Hallett
 description: Midshipman John Hallett
 givenname: John
-manager: cn=William Bligh,ou=people,o=sevenSeas
+manager: cn=William Bligh,ou=people,dc=example,dc=com
 sn: Hallett
 uid: jhallett
 mail: jhallett@royalnavy.mod.uk
 userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
 
-dn: cn=HMS Bounty,ou=crews,ou=groups,o=sevenSeas
+dn: cn=HMS Bounty,ou=crews,ou=groups,dc=example,dc=com
 objectclass: groupOfUniqueNames
 objectclass: top
 cn: HMS Bounty
-uniquemember: cn=William Bligh,ou=people,o=sevenSeas
-uniquemember: cn=Fletcher Christian,ou=people,o=sevenSeas
-uniquemember: cn=John Fryer,ou=people,o=sevenSeas
-uniquemember: cn=John Hallett,ou=people,o=sevenSeas
+uniquemember: cn=William Bligh,ou=people,dc=example,dc=com
+uniquemember: cn=Fletcher Christian,ou=people,dc=example,dc=com
+uniquemember: cn=John Fryer,ou=people,dc=example,dc=com
+uniquemember: cn=John Hallett,ou=people,dc=example,dc=com
 
 
 

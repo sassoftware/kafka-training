@@ -48,12 +48,12 @@ class TestLDAP {
             env.put(Context.SECURITY_CREDENTIALS, password);
             env.put(Context.PROVIDER_URL, server);
             DirContext ctx = new InitialDirContext(env);
+            System.out.println("Successfully authenticated user.");
         } catch (IOException ex) {
             System.out.println("Failed to load properties file: " + ex.getMessage());
         } catch (NamingException ex) {
             System.out.println("Failed to authenticate user: " + ex.getMessage());
         }
-        System.out.println("Successfully authenticated user.");
     }
 
 }

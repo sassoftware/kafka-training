@@ -65,7 +65,7 @@ fi
 #
 function displayUsage() {
     echo ""
-    echo "USAGE: $0 <action>"
+    echo "USAGE: $0 <action> <lab>"
     echo ""
     echo "ACTION:"
     echo ""
@@ -73,6 +73,17 @@ function displayUsage() {
     echo "   info     Display information about the LDAP server environment"
     echo "   start    Start an ApacheDS LDAP server"
     echo "   stop     Stop the ApacheDS LDAP server"
+    echo ""
+    echo "LAB:"
+    echo ""
+    echo "   Name of the lab settings to use when starting the LDAP server"
+    ls -1 -d Lab??_* | sed 's/^Lab/  - Lab/g'
+    echo ""
+    echo "EXAMPLES:"
+    echo ""
+    echo "   The following example executes kafka using Lab01 settings:"
+    echo ""
+    echo "      $0 info Lab01"
     echo ""
 }
 
@@ -178,35 +189,60 @@ function displayInfo() {
     echo "LDAP server information:"
     echo ""
     printf "   LADP Server URL: \tldap://localhost:$ADS_PORT\n"
+    printf "   LDAP Data Dir: \t$ADS_INSTANCES\n"
     echo ""
 }
 
 #################################### MAIN #####################################
 
-# Get the action to perform
+# Validate the arguments 
 if [ $# -eq 0 ]; then
-    displayUsage
-    exit
-elif [ $# -lt 1 ]; then
+    displayUsage 
+    exit 
+elif [ $# -lt 2 ]; then
     displayUsage
     echo ""
-    echo "ERROR: You must provide an <action> argument."
+    echo "ERROR: You must provide an <action> and a <lab> argument."
     exit 1
-elif [ $# -gt 1 ]; then
+elif [ $# -gt 2 ]; then 
     displayUsage
     echo ""
-    echo "ERROR: You have provided too many arguments.  Only the <action> required."
+    echo "ERROR: You have provided too many arguments.  Only the <action> and <lab> are required."
+    exit 1
+fi      
+
+# Get the user arguments
+LAB_ACTION=$1
+LAB_NAME=$2
+
+# Get the lab name command-line argument
+if [ ! -d $SCRIPT_DIR/$LAB_NAME ]; then
+    echo ""
+    echo "An invalid lab name has been provided.  Here are the list of avaiable options:"
+    echo ""
+    cd $SCRIPT_DIR
+    ls -1 -d Lab??_* | sed 's/^Lab/  - Lab/g'
+    firstlab=$(ls -1 -d Lab??_* | head -1)
+    echo ""
+    echo "EXAMPLE:"
+    echo ""
+    echo "      $0 $LAB_ACTION $firstlab"
+    echo ""
     exit 1
 fi
 
-# Get the user arguments
-SERVER_ACTION=$1
 
 installApacheDS
 installJXplorer
 
+# Set the location of the LDAP server data
+# This environment variable will be used by the ApacheDS script
+export ADS_INSTANCES="$SCRIPT_DIR/$LAB_NAME/ldap"
+mkdir -p $ADS_INSTANCES/default/log
+mkdir -p $ADS_INSTANCES/default/run
+
 # Perform the lab action
-case $SERVER_ACTION in
+case $LAB_ACTION in
     browse)
         cd $JXP_BIN_DIR; $JXP_BIN_DIR/jxplorer.sh
         ;;
@@ -214,10 +250,10 @@ case $SERVER_ACTION in
         displayInfo
         ;;
     start)
-        $ADS_BIN_DIR/bin/apacheds.sh $SERVER_ACTION
+        $ADS_BIN_DIR/bin/apacheds.sh $LAB_ACTION
         ;;
     stop)
-        $ADS_BIN_DIR/bin/apacheds.sh $SERVER_ACTION
+        $ADS_BIN_DIR/bin/apacheds.sh $LAB_ACTION
         ;;
     *)
         displayUsage

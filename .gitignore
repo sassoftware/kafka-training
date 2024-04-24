@@ -1,5 +1,8 @@
 /labs/kafka-server.env
 /labs/bin/
 /labs/src/
+/labs/tmp/
 /labs/*/logs/
+/labs/*/ldap/
 .vscode
+*.class

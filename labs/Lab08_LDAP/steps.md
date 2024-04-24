@@ -11,7 +11,7 @@ Start a local LDAP server using the management script located in the `lab`
 directory:
 
 ```
-./ldap-server.sh start
+./ldap-server.sh start Lab08_LDAP
 ```
 
 The LDAP server will be started in the background.  You can also obtain
@@ -19,14 +19,31 @@ information about the server such as the port or connection string by
 using the `info` argument:
 
 ```
-./ldap-server.sh info
+./ldap-server.sh info Lab08_LDAP
 ```
 
-Once the LDAP server is running, start the JExplorer UI and use it to
-import user data:
+## Step 2a: Populate the LDAP Data (command-line only)
+
+If you are performing these labs from the command-line and do not have
+access to a desktop environment, use the following command to populate
+the LDAP data from an LDIF file:
 
 ```
-./ldap-server.sh browse
+ldapadd -H ldap://localhost:10389 -D "uid=admin,ou=system" -x -w secret -f ./Lab08_LDAP/config/pirates.ldif
+ldapmodify -H ldap://localhost:10389 -D "uid=admin,ou=system" -x -w secret -f ./Lab08_LDAP/config/auth.ldif
+```
+
+## Step 2b: Populate the LDAP Data (using a UI)
+
+This step uses the JExplorer Java application to view and modify the
+LDAP data using a graphical interface.  Although the process is more
+involved that using the `ldapadd` command from the command-line, it
+will demonstrate a more user-friendly approach to interacting with the
+LDAP server.  Run the following command to start the JExplorer UI and
+use it to import user data:
+
+```
+./ldap-server.sh browse Lab08_LDAP
 ```
 
 Connect to the LDAP server by navigating to `File -> Connect` and specify
@@ -39,13 +56,30 @@ Once connected, use the menu at the top of the screen to import an LDIF file:
 `LDIF -> Import File`
 
 A sample LDIF file has been provided in the `Lab08_LDAP/config/pirates.ldif`
-file.  Select this file and click the `Import` button to load the data.
+file.  Select this file and click the `Import` button to load the data.  Be
+aware that the "Preview Changes" button will report errors in the file, but
+it should import correctly despite these warnings.
 
-Once the LDAP user information has been populated, you can exit the JXplorer
-application by navigating to `File -> Exit JXplorer`
+You can use the navigation tree on the left side to browse the now hierarchy
+of users and groups under the "com/example" tree.  Navigate to one of the
+users populated from the LDIF file:
+
+```
+com / example / people / Cornelius Buckley
+```
+
+The default "HTML View" of the tree explorer provides a readable but limited
+view of the user information.  Switching the main pane to "Table Editor"
+will show all fields associated with that item in the tree.
+If you "right click" on an item in the tree, a pop-up menu becomes available
+with a "Copy DN" item which provides a convenient way to copy the complete
+DN string into the clipboard for that item.
+
+Once you are finished exploring the data and the features of the JXplorer UI
+you can exit the application by navigating to `File -> Exit JXplorer`
 
 
-## Step 2: Configure the Authentication Plugin
+## Step 3: Configure the Authentication Plugin
 
 Review the Kafka configuration changes required to enable and configure the
 authentication plugin.  You can use the lab management script located in the
@@ -72,7 +106,7 @@ listener.  The full Kafka configuration file can be found in:
 Lab08_LDAP/config/server.properties
 ```
 
-## Step 2: Start the Kafka server
+## Step 4: Start the Kafka server
 
 Start the Kafka server using the lab management script:
 
@@ -83,7 +117,7 @@ Start the Kafka server using the lab management script:
 This will start Kafka as a background process, allowing you to continue
 working in the current shell window after the Kafka server has started.
 
-## Step 3: Follow the Server Logs
+## Step 5: Follow the Server Logs
 
 Use the lab management script to locate the Kafka log directory:
 
@@ -117,7 +151,7 @@ tail -f /home/yourname/kafka-training/labs/Lab08_LDAP/logs/server.log
 Leave this terminal window open and continue tailing the output of the
 server log for the remainder of this lab.
 
-## Step 4: Connect without Credentials
+## Step 6: Connect without Credentials
 
 While continuing to tail the server log, open a new terminal and use
 the Kafka tools to connect to the server without providing user credentials.
@@ -148,7 +182,7 @@ INFO [SocketServer listenerType=BROKER, nodeId=1] Failed authentication with /12
 In the console producer terminal, use the `Control - C` hotkey sequence to
 terminate the client.
 
-## Step 5: Connect with Credentials
+## Step 7: Connect with Credentials
 
 In order for the client to authenticate with LDAP, a username and password
 must be provided by specifying a config file.  A sample config file has been
@@ -184,7 +218,7 @@ to the Kafka server using SASL authentication.
 In the console producer terminal, use the `Control - C` hotkey sequence to
 terminate the client.
 
-## Step 6: Stop the Kafka server
+## Step 8: Stop the Kafka server
 
 The lab is now complete.  Use the lab management script to terminate the Kafka server:
 
@@ -192,8 +226,8 @@ The lab is now complete.  Use the lab management script to terminate the Kafka s
 ./kafka-server.sh stop Lab08_LDAP
 ```
 
-## Step 7: Stop the LDAP server
+## Step 9: Stop the LDAP server
 
 ```
-./ldap-server.sh stop
+./ldap-server.sh stop Lab08_LDAP
 ```
