@@ -12,6 +12,8 @@ command from the `labs` directory of this repository:
 
 This will start Kafka as a background process, allowing you to continue
 working in the current shell window after the Kafka server has started.
+Take note of the "Bin Directory" indicated in the output of the command above.
+The next few steps in this lab use the Kafka command-line utilities.
 
 ## Step 2: Create a Topic
 

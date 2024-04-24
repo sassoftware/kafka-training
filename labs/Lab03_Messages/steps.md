@@ -18,7 +18,19 @@ command from the `labs` directory of this repository:
 This will start Kafka as a background process, allowing you to continue
 working in the current shell window after the Kafka server has started.
 
-## Step 2: Produce a Message
+## Step 2: Create a Topic
+
+Messages are written to topics on the Kafka server.  Although Kafka is
+configured to auto-create a topic the first time a message is written
+to it, the following command can be used to manually create a new topic.
+Execute this command to create a new topic named "Lab03_Messages" with
+a default configuration:
+
+```
+bin/kafka-topics.sh --create --bootstrap-server=localhost:9092 --topic Lab03_Messages
+```
+
+## Step 3: Produce a Message
 
 Kafka comes with a command-line utilities to produce and consume messages from the
 console.  This is a convenient way to test out the producer/consumer functionality
@@ -51,7 +63,7 @@ topic:
 Keep this console session open for the next step to observe the interaction between
 a producer and consumer.
 
-## Step 3: Consume a Message
+## Step 4: Consume a Message
 
 Now that messages have been published to a topic, the console consumer can be used
 to read those messages from the topic and display them to the user.  For this step,
@@ -90,7 +102,7 @@ that connects to the server and what message offset was last consumed.  This all
 consumers to resume at the same point they left off even if the consumer process
 terminates and a new process is started.
 
-## Step 4: Stop the Kafka server 
+## Step 5: Stop the Kafka server 
 
 The lab is now complete.  You can use the "Control - C" keys to terminate any console
 producers and consumers that are still running.  Use the lab management script to
